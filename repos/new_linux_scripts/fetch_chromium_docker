@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#Update depot_tools if needed
+cd /depot_tools/
+git pull
+
+cd /repos
+
+#Delete any prior .gclient file
+rm -rf .gclient
+rm -rf ./src/
+
+echo "KALEIDO BUILDER: Fetch Chromium"
+python3 --version
+fetch --nohooks chromium
+
+#Write out credits
+python3 /repos/src/tools/licenses/licenses.py credits > /repos/CREDITS.html
