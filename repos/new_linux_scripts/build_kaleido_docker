@@ -1,0 +1,22 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+    echo "No architecture provided"
+    exit 1
+fi
+
+export KALEIDO_ARCH=$1
+
+cd /repos/src
+
+mkdir -p out/Kaleido_linux_$KALEIDO_ARCH
+# Have to manually download gn binary, automate it later
+
+#Try to re-sync?
+gclient sync
+
+#Write the args for the specific architecture, generate build configuration
+cp /repos/new_linux_scripts/args_$KALEIDO_ARCH.gn out/Kaleido_linux_$KALEIDO_ARCH/args.gn
+gn gen out/Kaleido_linux_$KALEIDO_ARCH
+
+#Run the build itself
+/repos/new_linux_scripts/perform_kaleido_build
