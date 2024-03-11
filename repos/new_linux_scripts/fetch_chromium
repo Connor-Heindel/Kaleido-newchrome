@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#Full path to linux_scripts directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+#cd to top-level project directory
+cd $DIR/../..
+echo `pwd`
+
+#Download Chromium
+docker run -it -v `pwd`/repos/:/repos csheindel/chromium-builder:0.1 /repos/new_linux_scripts/fetch_chromium_docker
+
+#Checkout specific Chromium version
+docker run -it -v `pwd`/repos/:/repos csheindel/chromium-builder:0.1 /repos/new_linux_scripts/checkout_revision_docker
