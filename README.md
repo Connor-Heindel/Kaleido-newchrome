@@ -1,3 +1,6 @@
+# Note
+This is an in-progress version of Kaleido that is attempting to retool the Chromium compiling system to use a significantly newer version of Chromium, to trial if that fixes the common hanging issue seen on Windows and WSL installs of Kaleido. The latest files in `new_linux_scripts` are a copy of the latest setup I've put together on my development copy before putting the project on the backburner, so it may be in a nonfunctional state.
+
 # Overview
 Kaleido is a cross-platform library for generating static images (e.g. png, svg, pdf, etc.) for web-based visualization libraries, with a particular focus on eliminating external dependencies. The project's initial focus is on the export of plotly.js images from Python for use by plotly.py, but it is designed to be relatively straight-forward to extend to other web-based visualization libraries, and other programming languages.  The primary focus of Kaleido (at least initially) is to serve as a dependency of web-based visualization libraries like plotly.py. As such, the focus is on providing a programmatic-friendly, rather than user-friendly, API.
 
