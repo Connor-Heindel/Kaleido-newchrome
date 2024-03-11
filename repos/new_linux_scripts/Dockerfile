@@ -33,6 +33,6 @@ RUN \
   && echo debconf debconf/frontend select Noninteractive | debconf-set-selections
   
 RUN \
-  curl -s https://chromium.googlesource.com/chromium/src/+/refs/tags/{$CHROMIUM_TAG}/build/install-build-deps.py?format=TEXT \
+  curl -s https://chromium.googlesource.com/chromium/src/+/refs/tags/${CHROMIUM_TAG}/build/install-build-deps.py?format=TEXT \
   | base64 -d > install-build-deps.py && chmod +x ./install-build-deps.py \
   && ./install-build-deps.py --no-syms --no-android --no-arm --no-chromeos-fonts --no-nacl --no-prompt
