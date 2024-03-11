@@ -1,0 +1,21 @@
+#!/bin/bash
+if [ $# -eq 0 ]; then
+  echo "No architecture provided"
+  exit 1
+fi
+export KALEIDO_ARCH=$1
+
+# full path to new_linux_scripts/ directory
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+#cd to top-level directory
+cd $DIR/../..
+
+#Set module version based on git tags
+python3 ./repos/version/build_pep440_version.py
+
+cp ./README.md ./repos/kaleido/
+cp ./LICENSE.txt ./repos/kaleido/
+
+#I haven't uploaded chromium-builder to the docker hub yet! But I will one day, if I ever get everything working!
+docker run -it -v `pwd`/repos/:/repos csheindel/chromium-builder:0.1 /repos/new_linux_scripts/build_kaleido_docker $KALEIDO_ARCH
